@@ -2,10 +2,11 @@ require 'robot'
 require 'spec_helper'
 
 describe Robot do
-	let(:bearing) { 'NORTH' }
+  let(:bearing) { 'NORTH' }
   let(:x)       {0}
   let(:y)       {0}
-  let(:robot)   { Robot.new(bearing, x, y)}
+  let(:table)   { Table.new(5,5) }
+  let(:robot)   { Robot.new(bearing, x, y, table)}
 
 	it "can receive a direction" do
 		expect(robot.bearing).to eq "NORTH"
@@ -15,5 +16,31 @@ describe Robot do
     expect(robot.report).to eq ["NORTH", 0, 0]
   end
 
+  it "can be placed" do
+    robot.place(1,1,'EAST')
+    expect(robot.y_coord).to eq 1
+    expect(robot.x_coord).to eq 1 
+    expect(robot.bearing).to eq 'EAST'
+  end
+
+  it "can move" do
+    robot.move
+    expect(robot.y_coord).to eq 1 
+  end
+
+  context "robot is facing south" do
+
+    let(:bearing) { 'SOUTH' }
+
+    it "will face EAST after turning LEFT" do     
+      robot.left
+      expect(robot.bearing).to eq "EAST"
+    end
+
+    it "can't move south if y coordinate is 0" do
+      robot.move
+      expect(robot.y_coord).to eq 0
+    end
+  end
 
 end
