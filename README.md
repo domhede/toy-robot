@@ -14,7 +14,7 @@ The first valid command to the robot is a PLACE command, after that, any sequenc
 
 PLACE X,Y,BEARING
 
-PLACE will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST.
+- will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST.
 The origin (0,0) can be considered to be the SOUTH WEST most corner.
 
 eg. PLACE 0,0,NORTH
