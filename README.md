@@ -1,8 +1,8 @@
-Toy Robot Simulation
+TOY ROBOT SIMULATION
 
-Task Description
+TASK DESCRIPTION
 
-The application is a simulation of a toy robot moving on a square tabletop, of dimensions 5 units x 5 units.
+This application is a simulation of a toy robot moving on a square tabletop, of dimensions 5 units x 5 units.
 There are no other obstructions on the table surface.
 
 The robot is free to roam around the surface of the table, but must be prevented from falling to destruction. Any movement that would result in the robot falling from the table must be prevented, however further valid movement commands must still be allowed.
@@ -19,6 +19,7 @@ The origin (0,0) can be considered to be the SOUTH WEST most corner.
 
 eg. PLACE 0,0,NORTH
 
+- this command can be used anytime
 
 MOVE
 
@@ -29,7 +30,43 @@ LEFT and RIGHT
 - will rotate the robot 90 degrees in the specified direction without changing the position of the robot.
 
 REPORT 
-- will announce the X,Y and Bearing of the robot. 
+
+- will announce the X coordinate, Y coordinate and Bearing of the robot. 
+
+
+INSTALLATION
+
+git clone https://github.com/domhede/toy-robot.git
+cd toy-robot
+
+RUNNING
+
+ruby lib/toy_robot.rb
+
+Example Valid Input:
+
+	PLACE 0,0,NORTH
+	MOVE
+	REPORT
+	Expected Output: 0,1,NORTH
+
+	PLACE 0,0,NORTH
+	LEFT
+	REPORT
+	Expected Output: 0,0,WEST
+
+	PLACE 1,2,EAST
+	MOVE
+	MOVE
+	LEFT
+	MOVE
+	REPORT
+	Expected Output: 3,3,NORTH
+
+
+
+
+
 
 
 
