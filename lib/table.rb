@@ -7,8 +7,8 @@ class Table
     @max_y = y
   end
 
-  def coords_are_on_table?(x, y)
-    (x >= 0 && x <= @max_x && y >= 0 && y <= @max_y)
+  def coords_are_on_table?(x_dest, y_dest)
+    (x_dest >= 0 && x_dest <= @max_x && y_dest >= 0 && y_dest <= @max_y)
   end
 
 end

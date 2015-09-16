@@ -6,7 +6,11 @@ describe Robot do
   let(:x)       {0}
   let(:y)       {0}
   let(:table)   { Table.new(5,5) }
-  let(:robot)   { Robot.new(bearing, x, y, table)}
+  let(:robot)   { Robot.new }
+
+  before do 
+    robot.place(bearing, x, y, table)
+  end
 
 	it "can receive a direction" do
 		expect(robot.bearing).to eq "NORTH"
@@ -17,7 +21,7 @@ describe Robot do
   end
 
   it "can be placed" do
-    robot.place(1,1,'EAST')
+    robot.place('EAST',1,1,table)
     expect(robot.y_coord).to eq 1
     expect(robot.x_coord).to eq 1 
     expect(robot.bearing).to eq 'EAST'

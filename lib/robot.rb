@@ -2,11 +2,18 @@ class Robot
 
   attr_accessor :bearing, :x_coord, :y_coord, :table
 
-  def initialize(bearing, x_coord, y_coord, table)
+  def place(bearing, x, y, table)
+
+    @table = table
+
+    if @table.coords_are_on_table?(x,y)
+      @y_coord = y
+      @x_coord = x
+    end
+
     @bearing = bearing
-    @x_coord = x_coord
-    @y_coord = y_coord
-      @table = table
+
+    return nil
   end
 
   def left
@@ -16,6 +23,7 @@ class Robot
                when "SOUTH" then "EAST"
                when "WEST"  then "SOUTH"
                end
+    return nil
   end
 
   def right
@@ -25,13 +33,16 @@ class Robot
                when "SOUTH" then "WEST"
                when "WEST"  then "NORTH"
                end
+    return nil
   end
 
   def report
-    return bearing, x_coord, y_coord
+    return "#{x_coord},#{y_coord},#{bearing}"
   end
 
   def move
+    message = nil
+
     y_dest = @y_coord
     x_dest = @x_coord
 
@@ -46,21 +57,15 @@ class Robot
       x_dest = @x_coord - 1
     end
 
-    if table.coords_are_on_table?(x_dest, y_dest)
+    if @table.coords_are_on_table?(x_dest, y_dest)
       @y_coord = y_dest
       @x_coord = x_dest
+    else
+      message = "That move will send the robot of the table.  This is not allowed."
     end
 
-  end
+    return message    
 
-  def place(x,y,bearing)
-    if table.coords_are_on_table?(x,y)
-      @y_coord = y
-      @x_coord = x
-    end
-
-    @bearing = bearing
-    
   end
 
 end
